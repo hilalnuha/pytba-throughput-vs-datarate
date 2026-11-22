@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "PyTBA: Python Throughput-Bandwidth Analyzer"
+authors:
+  - family-names: Nuha
+    given-names: Hilal Hudan
+    orcid: "https://orcid.org/0000-0002-3018-6788"
+  - family-names: Novoseltsev
+    given-names: Ihor
+  - family-names: Iddi
+    given-names: Hashim
+license: MIT
+repository-code: "https://github.com/hilalnuha/pytba-throughput-vs-datarate"
+preferred-citation:
+  type: article
+  title: "Throughput vs Data Rate"
+  authors:
+    - family-names: Nuha
+      given-names: Hilal Hudan
+    - family-names: Novoseltsev
+      given-names: Ihor
+    - family-names: Iddi
+      given-names: Hashim
+  journal: "Jurnal INFOTEL"
+  status: submitted
