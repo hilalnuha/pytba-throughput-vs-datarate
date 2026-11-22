@@ -5,6 +5,7 @@ on:
     paths:
       - "**.py"
       - "validation_ns3.jsonl"
+      - "diagrams/**.tex"
       - ".github/workflows/regenerate.yml"
   workflow_dispatch:
 
@@ -25,10 +26,16 @@ jobs:
         run: python run_experiments.py
       - name: Compare models with ns-3
         run: python compare_ns3.py
+      - name: Build topology diagrams (standalone TikZ to PDF)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends texlive-latex-base texlive-latex-extra texlive-pictures texlive-fonts-recommended
+          cd diagrams
+          for f in topo_*.tex; do pdflatex -interaction=nonstopmode -halt-on-error "$f"; done
       - name: Commit regenerated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add figures results.json validation_ns3_summary.csv ns3_rows.tex
-          git diff --cached --quiet || git commit -m "Regenerate figures and results [skip ci]"
+          git add figures results.json validation_ns3_summary.csv ns3_rows.tex diagrams/*.pdf
+          git diff --cached --quiet || git commit -m "Regenerate figures, diagrams and results [skip ci]"
           git push
