@@ -15,7 +15,8 @@ them in one place so that every figure and number in the paper can be regenerate
 | `validation_ns3.jsonl` | One JSON record per ns-3 run and seed |
 | `compare_ns3.py` | Compares models with ns-3; writes `validation_ns3_summary.csv` (Table 5 of the paper) |
 | `results.json` | Every number reported in the paper |
-| `.github/workflows/regenerate.yml` | GitHub Actions workflow that re-runs the experiments on every change and commits `figures/`, `results.json` and `validation_ns3_summary.csv` |
+| `diagrams/topo_*.tex` | Standalone TikZ topology diagrams of E1-E6 and the ns-3 setup (Figs. 1-7 of the paper); compiled to `diagrams/topo_*.pdf` by the workflow |
+| `.github/workflows/regenerate.yml` | GitHub Actions workflow that re-runs the experiments on every change and commits `figures/`, `diagrams/*.pdf`, `results.json` and `validation_ns3_summary.csv` |
 
 ## Experiments
 
@@ -48,6 +49,12 @@ points are skipped, so an interrupted grid resumes where it stopped. The goodput
 the first 100 Mb/s and 1 Gb/s runs was recovered from the console log after an
 interruption and is therefore stored with two decimals. BBR at 100 Mb/s with
 p = 1e-2 was not simulated (the run did not finish within our computing budget).
+
+Topology diagrams (one standalone PDF per experiment, included in the paper with `\includegraphics`):
+
+```bash
+cd diagrams && for f in topo_*.tex; do pdflatex $f; done
+```
 
 ## Conventions
 
