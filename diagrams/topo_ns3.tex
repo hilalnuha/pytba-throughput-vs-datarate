@@ -1,0 +1,15 @@
+\documentclass[border=4pt]{standalone}
+\input{common.tex}
+\begin{document}
+\begin{tikzpicture}
+\node[host, minimum width=34mm] (n0) {Node $n_0$\\BulkSendApplication\\TCP: Linux Reno / CUBIC / BBR};
+\node[chan, right=6mm of n0, minimum width=32mm] (q) {DropTail queue\\$2\times$BDP packets};
+\node[host, right=30mm of q, minimum width=30mm] (n1) {Node $n_1$\\PacketSink\\(goodput measured)};
+\node[lossbox, above=5mm of n1] (em) {RateErrorModel\\(packet unit), loss $p$};
+\draw[data] (n0) -- (q);
+\draw[data] (q) -- node[lbl, above] {PointToPoint link} node[lbl, below] {rate $C$, delay RTT/2} (n1);
+\draw[-{Stealth[length=2mm]}, red!70!black] (em) -- (n1);
+\node[lbl, below=7mm of q.south east, anchor=north] {MSS 1460 bytes, SACK, IW 10, one ACK per segment, minimum RTO 1 s\\
+  scenarios: 100 Mb/s \& 50 ms;\ 1 Gb/s \& 5 ms;\ E6: 1 Gb/s \& 20 ms};
+\end{tikzpicture}
+\end{document}
