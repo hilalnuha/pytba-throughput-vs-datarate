@@ -1,0 +1,18 @@
+% shared style for all PyTBA topology diagrams (\input by each standalone file)
+\usepackage{mathpazo}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing,fit,backgrounds}
+\tikzset{
+  host/.style={draw=blue!55!black, fill=blue!7, rounded corners=2pt, align=center,
+               minimum height=9mm, minimum width=22mm, font=\small},
+  blk/.style={draw=black!60, fill=black!4, rounded corners=2pt, align=center,
+              minimum height=8mm, font=\small},
+  chan/.style={draw=orange!70!black, fill=orange!8, rounded corners=2pt, align=center,
+               minimum height=9mm, font=\small},
+  lossbox/.style={draw=red!70!black, fill=red!6, rounded corners=2pt, align=center, font=\footnotesize},
+  data/.style={-{Stealth[length=2.2mm]}, thick},
+  ack/.style={-{Stealth[length=2mm]}, dashed, black!60},
+  lbl/.style={font=\footnotesize, align=center},
+  brace/.style={decorate, decoration={brace, amplitude=4pt}, thick, black!70},
+}
